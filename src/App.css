@@ -1,0 +1,211 @@
+/* Styles globaux */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "Cormorant Garamond", serif;
+  background-color: #111;
+}
+
+/* --- PAGE 1 : L'accueil --- */
+.page-1-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #111; /* Fond noir pour mieux marier les transitions */
+  overflow: hidden;
+}
+
+.page-1-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  /* NOUVEAU : Effet de flou sur le fond de la page 1 */
+  filter: blur(8px);
+  transform: scale(1.05); /* Astuce pour masquer les bords blancs du flou */
+  z-index: 1;
+}
+
+.letter-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 50px;
+  background: rgba(255, 253, 252, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Ombre un peu plus prononcée */
+  border-radius: 8px;
+}
+
+.names-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 4.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #555;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.open-button {
+  background: none;
+  border: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #777;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+  transition: color 0.3s ease;
+}
+
+.open-button:hover {
+  color: #000; /* Devient noir au survol pour inciter au clic */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- PAGE 2 : La Photo et le Texte --- */
+.page-2-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.page-2-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  z-index: 1;
+  /* NOUVEAU : Animation d'apparition lente et majestueuse de la photo */
+  opacity: 0;
+  animation: slowRevealBg 3s ease-out forwards;
+}
+
+/* L'animation qui fait passer la photo du flou/invisible au net/visible */
+@keyframes slowRevealBg {
+  0% {
+    opacity: 0;
+    filter: blur(20px);
+    transform: scale(1.1); /* Léger effet d'éloignement */
+  }
+  100% {
+    opacity: 0.45;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+}
+
+/* NOUVEAU : Animation du texte repensée */
+.fade-in {
+  opacity: 0;
+  /* Le texte attend 0.8s puis apparaît doucement pendant 2.5s */
+  animation: slowRevealText 2.5s ease-in-out 0.8s forwards;
+}
+
+/* Le texte passe aussi du flou au net en montant doucement */
+@keyframes slowRevealText {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.location-text {
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.elegant-frame {
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  padding: 40px 60px;
+  margin-bottom: 40px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 4px;
+}
+
+.save-date {
+  font-family: "Great Vibes", cursive;
+  font-size: 4rem;
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+
+.date {
+  font-size: 2rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.initials {
+  font-family: "Great Vibes", cursive;
+  font-size: 4.5rem;
+  margin-bottom: 15px;
+}
+
+.quote {
+  font-size: 1.3rem;
+  font-style: italic;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}

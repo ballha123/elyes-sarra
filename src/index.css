@@ -1,0 +1,160 @@
+/* Styles globaux */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* --- PAGE 1 : La Lettre --- */
+.page-1-letter {
+  width: 100%;
+  height: 100%;
+  background-color: #faf9f6; /* Couleur blanc cassé */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.letter-content {
+  text-align: center;
+  padding: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background: #fffdfc;
+  border-radius: 4px;
+}
+
+.names-title {
+  font-family: "Great Vibes", cursive; /* Belle écriture cursive */
+  font-size: 4.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #555;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.open-button {
+  background: none;
+  border: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #777;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- PAGE 2 : La Photo et les détails --- */
+.page-2-details {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Un voile sombre pour que le texte blanc soit bien lisible sur la photo */
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.location-text {
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* Le Cadre dynamique */
+.elegant-frame {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 30px 50px;
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.1); /* Effet verre léger */
+  backdrop-filter: blur(3px); /* Flou léger derrière le cadre */
+}
+
+.save-date {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.5rem;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.initials {
+  font-family: "Great Vibes", cursive;
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
