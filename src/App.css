@@ -10,9 +10,7 @@
   min-height: 100vh;
   font-family: "Cormorant Garamond", serif;
   background-color: #111;
-}
-
-/* --- PAGE 1 : L'accueil --- */
+} /* --- PAGE 1 : L'accueil --- */
 .page-1-container {
   position: relative;
   width: 100%;
@@ -39,15 +37,73 @@
   z-index: 1;
 }
 
+/* NOUVEAU : L'Enveloppe Stylisée */
 .letter-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 50px;
-  background: rgba(255, 253, 252, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Ombre un peu plus prononcée */
+  padding: 80px 50px 50px 50px; /* Plus de padding en haut pour le rabat */
+  background: #fffdfc; /* Blanc cassé */
   border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Ombre un peu plus prononcée */
+  transition: all 0.6s ease-in-out; /* Pour l'ouverture */
+
+  /* Dimensions pour que l'enveloppe soit bien proportionnée */
+  width: 90%;
+  max-width: 500px;
+}
+
+/* NOUVEAU : Rabat supérieur de l'enveloppe */
+.letter-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fffdfc; /* Même couleur que l'enveloppe */
+  border-radius: 8px;
+  clip-path: polygon(0 0, 100% 0, 50% 50%); /* Dessine un triangle */
+  transition: all 0.6s ease-in-out;
+  transform-origin: top;
+  z-index: 1;
+}
+/* NOUVEAU : Cachet de cire virtuel bien aligné */
+.letter-content::after {
+  content: "E & S";
+  position: absolute;
+  top: 50%; /* CORRECTION : On le place exactement au milieu (à 50% au lieu de 45%) */
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centre parfaitement le cercle sur ce point */
+  width: 65px; /* Un tout petit peu plus grand pour l'élégance */
+  height: 65px;
+  background-color: #333;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 3; /* On s'assure qu'il est bien au-dessus de tout */
+  transition: all 0.6s ease-in-out; /* Même durée que le rabat pour une ouverture fluide */
+  transform-origin: top; /* Important pour que l'ouverture soit naturelle */
+}
+
+/* L'animation du cachet quand on survole l'enveloppe */
+.letter-content:hover::after {
+  /* Le cachet suit le mouvement d'ouverture du rabat vers le haut */
+  transform: translate(-50%, -50%) rotateX(160deg);
+  opacity: 0;
+}
+/* NOUVEAU : Conteneur pour le texte de l'enveloppe */
+.letter-text {
+  position: relative;
+  z-index: 0; /* Derrière le cachet et le rabat */
 }
 
 .names-title {
@@ -75,8 +131,27 @@
   color: #777;
   cursor: pointer;
   animation: pulse 2s infinite;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3; /* Le bouton doit être cliquable ! */
 }
+
+/* NOUVEAU : Animation d'ouverture de l'enveloppe */
+.letter-content:hover {
+  transform: translateY(-20px); /* L'enveloppe monte un peu */
+}
+
+.letter-content:hover::before {
+  transform: rotateX(160deg); /* Le rabat s'ouvre */
+  opacity: 0; /* Il devient invisible à la fin */
+}
+
+.letter-content:hover::after {
+  transform: translate(-50%, -50%) rotateX(160deg); /* Le cachet s'ouvre avec le rabat */
+  opacity: 0; /* Et disparaît */
+}
+
+/* ... (Conservez vos animations @keyframes pulse, slowRevealBg, etc.) ... */
 
 .open-button:hover {
   color: #000; /* Devient noir au survol pour inciter au clic */
