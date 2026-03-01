@@ -1,35 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react"; // NOUVEAU : on ajoute useRef
 import "./App.css";
 import weddingPhoto from "./wedding-photo.jpg";
-import bgPage1 from "./bg-page1.jpg"; // La nouvelle photo de fond pour la page 1
+import bgPage1 from "./bg-page1.jpg";
+import weddingSong from "./wedding-song.mp3"; // NOUVEAU : Importation de la musique
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // NOUVEAU : On crée une référence pour contrôler le lecteur audio
+  const audioRef = useRef(null);
+
+  // NOUVEAU : La fonction magique qui ouvre l'enveloppe ET lance la musique
+  const handleOpenInvitation = (e) => {
+    if (e) e.stopPropagation(); // Empêche les bugs si on clique vite
+    setIsOpen(true);
+    if (audioRef.current) {
+      audioRef.current.play(); // Joue la musique !
+    }
+  };
+
   return (
     <div className="app-container">
+      {/* NOUVEAU : Le lecteur audio caché (loop permet de tourner en boucle) */}
+      <audio ref={audioRef} src={weddingSong} loop />
+
       {/* ÉTAPE 1 : La lettre d'accueil avec fond photo */}
       {!isOpen ? (
-        <div className="page-1-container" onClick={() => setIsOpen(true)}>
+        <div className="page-1-container" onClick={handleOpenInvitation}>
           {/* L'image de fond de la page 1 */}
           <img src={bgPage1} alt="Background" className="page-1-bg" />
 
           <div className="letter-content">
+            {/* Le texte sur l'enveloppe est géré dans le CSS avec ::before */}
             <h1 className="names-title">Elyes & Sarra</h1>
             <h2 className="subtitle">We are getting married</h2>
-            <button
-              className="open-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsOpen(true);
-              }}
-            >
+            <button className="open-button" onClick={handleOpenInvitation}>
               Click to open
             </button>
           </div>
         </div>
       ) : (
-        /* ÉTAPE 2 : L'annonce avec la photo principale réparée */
+        /* ÉTAPE 2 : L'annonce avec la photo principale */
         <div className="page-2-container">
           {/* L'image de fond qui s'adapte à l'écran sans trop zoomer */}
           <img src={weddingPhoto} alt="Elyes et Sarra" className="page-2-bg" />
